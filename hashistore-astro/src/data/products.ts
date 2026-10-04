@@ -167,15 +167,16 @@ export const categories: Category[] = [
     name: 'Sports Equipment',
     groups: ['sports'],
     description: 'Balls, whistles and gear for school teams, PE lessons and weekend games.',
+    image: '/images/categories/sports.jpeg',
     products: [
       { name: 'Footballs', description: 'Match and training footballs in standard sizes.', image: '/images/products/footballs.jpeg' },
       { name: 'Basketballs', description: 'Indoor and outdoor basketballs for training and matches.', image: '/images/products/basketballs.jpeg' },
       { name: 'Volleyballs', description: 'Soft-touch volleyballs for school and club play.', image: '/images/products/volleyballs.jpeg' },
-      { name: 'Netballs', description: 'Durable netballs for school and league games.' },
-      { name: 'Tennis Balls', description: 'Pressurised tennis balls for practice and play.' },
+      { name: 'Netballs', description: 'Durable netballs for school and league games.', image: '/images/products/netballs.jpeg' },
+      { name: 'Tennis Balls', description: 'Pressurised tennis balls for practice and play.', image: '/images/products/tennis-balls.jpeg' },
       { name: 'Whistles', description: 'Loud, durable whistles for referees, coaches and PE teachers.', image: '/images/products/whistles.jpeg' },
-      { name: 'Skipping Ropes', description: 'Adjustable ropes for fitness and play.' },
-      { name: 'Cones & Sports Bibs', description: 'Training cones and team bibs.' }
+      { name: 'Skipping Ropes', description: 'Adjustable ropes for fitness and play.', image: '/images/products/skipping-ropes.jpeg' },
+      { name: 'Cones & Sports Bibs', description: 'Training cones and team bibs.', image: '/images/products/ cones-and-sports-bibs.jpeg' }
     ]
   }
 ];
