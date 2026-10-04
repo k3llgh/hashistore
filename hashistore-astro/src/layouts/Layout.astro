@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+
+const { title = 'HashiStore | Hashirama Traders Ltd', description = 'Stationery, school and office supplies for wholesale and retail.' } = Astro.props;
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '';
+const whatsappHref = whatsappNumber
+  ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hello HashiStore, I would like to enquire about your stationery and supplies.')}`
+  : `mailto:hashirama.corp@gmail.com?subject=${encodeURIComponent('HashiStore enquiry')}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b1f36" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="/" aria-label="HashiStore home">
+          <img src="/images/logo-v0.jpeg" alt="HashiStore logo" />
+          <span>hashistore</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/products">Products</a>
+          <a href="/about">About</a>
+          <a href="/updates">Updates</a>
+        </nav>
+        <a class="nav-cta" href={whatsappHref} target={whatsappNumber ? '_blank' : undefined} rel={whatsappNumber ? 'noreferrer' : undefined}>Enquire</a>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand footer-brand" href="/">
+            <img src="/images/logo-v0.jpeg" alt="" />
+            <span>hashistore</span>
+          </a>
+          <p>Hashirama Traders Ltd — stationery, school and office supplies for wholesale and retail.</p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <a href="/products?category=school">School supplies</a>
+          <a href="/products?category=office">Office supplies</a>
+          <a href="/updates">Updates</a>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <a href="mailto:hashirama.corp@gmail.com">hashirama.corp@gmail.com</a>
+          <a href={whatsappHref} target={whatsappNumber ? '_blank' : undefined} rel={whatsappNumber ? 'noreferrer' : undefined}>WhatsApp enquiry</a>
+        </div>
+        <div>
+          <h3>Social</h3>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer">TikTok</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© Hashirama Traders Ltd</span>
+        <span>Trademark User 2004 - 2026</span>
+        <span>Built for simple, direct enquiries.</span>
+      </div>
+    </footer>
+
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie notice" hidden>
+      <div>
+        <strong>Cookies, kept simple.</strong>
+        <p>HashiStore uses a small local preference cookie/local-storage setting to remember your cookie choice. No advertising tracker is required for this site.</p>
+      </div>
+      <div class="cookie-actions">
+        <button id="cookie-accept" class="button button-small">Accept</button>
+        <button id="cookie-decline" class="button button-small button-ghost">Decline</button>
+      </div>
+    </div>
+
+    <script is:inline>
+      const key = 'hashistore-cookie-consent';
+      const banner = document.getElementById('cookie-banner');
+      const consent = document.cookie.split('; ').find(row => row.startsWith(key + '='));
+      if (!consent) banner.hidden = false;
+      const setConsent = (value) => {
+        document.cookie = `${key}=${value}; Max-Age=31536000; Path=/; SameSite=Lax`;
+        banner.hidden = true;
+      };
+      document.getElementById('cookie-accept')?.addEventListener('click', () => setConsent('accepted'));
+      document.getElementById('cookie-decline')?.addEventListener('click', () => setConsent('declined'));
+    </script>
+  </body>
+</html>

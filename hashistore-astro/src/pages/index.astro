@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '';
+const whatsappHref = whatsappNumber
+  ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hello HashiStore, I would like to enquire about stationery and supplies.')}`
+  : `mailto:hashirama.corp@gmail.com?subject=${encodeURIComponent('HashiStore enquiry')}`;
+---
+
+<Layout title="hashistore | Stationery for school, office & business">
+  <section class="hero hero-home">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="eyebrow light">Hashirama Traders Ltd</span>
+      <h1>Everything you need to <em>write, learn & work.</em></h1>
+      <p class="hero-copy">A practical stationery destination for schools, offices, businesses and everyday shoppers. Wholesale and retail supplies, with direct enquiries through WhatsApp.</p>
+      <div class="hero-actions">
+        <a class="button" href="/products">Browse supplies</a>
+        <a class="button button-light" href={whatsappHref} target={whatsappNumber ? '_blank' : undefined} rel={whatsappNumber ? 'noreferrer' : undefined}>Order / enquire on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section intro-section">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">Stationery, simplified</span>
+        <h2>From one pen to a full office or school order.</h2>
+      </div>
+      <div>
+        <p>HashiStore showcases a focused range of school and office essentials. Choose your category, find what you need and contact Hashirama Traders Ltd directly for availability, pricing and bulk orders.</p>
+        <a class="text-link" href="/about">Learn about Hashirama Traders →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section category-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Shop by need</span>
+          <h2>Made for classrooms. Ready for business.</h2>
+        </div>
+        <a class="text-link" href="/products">View all products →</a>
+      </div>
+      <div class="category-grid">
+        <a class="category-card school-card" href="/products?category=school">
+          <div class="category-image" style="background-image:url('/images/school-supplies.jpeg')"></div>
+          <div class="category-copy">
+            <span>01</span>
+            <h3>School supplies</h3>
+            <p>Books, maths sets, art tools, bags and everyday classroom essentials.</p>
+            <b>Explore school →</b>
+          </div>
+        </a>
+        <a class="category-card office-card" href="/products?category=office">
+          <div class="category-image" style="background-image:url('/images/office-supplies.jpeg')"></div>
+          <div class="category-copy">
+            <span>02</span>
+            <h3>Office supplies</h3>
+            <p>Desk essentials, paper, files, pens and practical workplace supplies.</p>
+            <b>Explore office →</b>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container band-inner">
+      <div>
+        <span class="eyebrow light">Wholesale + retail</span>
+        <h2>Buying for a school, team or business?</h2>
+        <p>Tell us what you need and we’ll help you enquire about stock and bulk quantities.</p>
+      </div>
+      <a class="button button-light" href={whatsappHref} target={whatsappNumber ? '_blank' : undefined} rel={whatsappNumber ? 'noreferrer' : undefined}>Start an enquiry</a>
+    </div>
+  </section>
+</Layout>

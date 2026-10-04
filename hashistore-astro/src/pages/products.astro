@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CategoryAccordion from '../components/CategoryAccordion.astro';
+import { categories } from '../data/products';
+
+const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '';
+// Each product gets its own enquiry link that names the product.
+const enquiryFor = (product: string, category: string) => {
+  const message = `Hello HashiStore, I would like to ask about stock of: ${product} (${category}).`;
+  return whatsappNumber
+    ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+    : `mailto:hashirama.corp@gmail.com?subject=${encodeURIComponent('HashiStore stock enquiry: ' + product)}&body=${encodeURIComponent(message)}`;
+};
+---
+
+<Layout title="Products | hashistore" description="Browse HashiStore school and office stationery supplies.">
+  <section class="product-hero">
+    <div class="product-hero-overlay"></div>
+    <div class="container product-hero-content">
+      <span class="eyebrow light">The HashiStore range</span>
+      <h1>School, office & sports supplies.</h1>
+      <p>Open a category to see the products in it, then ask about stock, pricing and wholesale quantities.</p>
+    </div>
+  </section>
+
+  <section class="section products-section">
+    <div class="container">
+      <div class="filter-bar" aria-label="Product filters">
+        <span class="filter-label">Filter</span>
+        <a data-filter="all" class="list-active" href="/products">All supplies</a>
+        <a data-filter="school" href="/products?category=school">School</a>
+        <a data-filter="office" href="/products?category=office">Office</a>
+        <a data-filter="sports" href="/products?category=sports">Sports</a>
+        <button type="button" id="toggle-all" class="toggle-all">Expand all</button>
+      </div>
+
+      <div class="products-intro">
+        <div>
+          <span class="eyebrow" id="showing-count">Showing {categories.length} categories</span>
+          <h2 id="products-title">Everyday stationery essentials</h2>
+        </div>
+        <p>Listings are a showcase rather than a live inventory. Tap “Ask about stock” on any product to confirm availability or ask about bulk orders.</p>
+      </div>
+
+      <div class="cat-list">
+        {categories.map((category) => <CategoryAccordion category={category} enquiryFor={enquiryFor} />)}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var filter = params.get('category') || 'all';
+      if (['school', 'office', 'sports'].indexOf(filter) === -1) filter = 'all';
+
+      var titles = { all: 'Everyday stationery essentials', school: 'School essentials', office: 'Office essentials', sports: 'Sports equipment' };
+      var cats = Array.prototype.slice.call(document.querySelectorAll('details.cat'));
+
+      var shown = 0;
+      cats.forEach(function (el) {
+        var match = filter === 'all' || el.dataset.groups.split(' ').indexOf(filter) !== -1;
+        el.hidden = !match;
+        if (match) shown++;
+      });
+      document.getElementById('showing-count').textContent = 'Showing ' + shown + ' categories';
+      document.getElementById('products-title').textContent = titles[filter];
+      document.querySelectorAll('[data-filter]').forEach(function (a) {
+        a.classList.toggle('list-active', a.dataset.filter === filter);
+      });
+
+      // Open the category named in the URL hash (e.g. /products#math-sets)
+      function openFromHash() {
+        var target = location.hash && document.querySelector('details.cat' + location.hash);
+        if (target) { target.hidden = false; target.open = true; target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+      openFromHash();
+      window.addEventListener('hashchange', openFromHash);
+
+      var toggle = document.getElementById('toggle-all');
+      toggle.addEventListener('click', function () {
+        var visible = cats.filter(function (el) { return !el.hidden; });
+        var open = visible.some(function (el) { return !el.open; });
+        visible.forEach(function (el) { el.open = open; });
+        toggle.textContent = open ? 'Collapse all' : 'Expand all';
+      });
+    })();
+  </script>
+</Layout>
