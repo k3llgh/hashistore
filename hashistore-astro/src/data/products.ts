@@ -29,10 +29,8 @@ export const categories: Category[] = [
     products: [
       { name: 'A4 Exercise Books', description: 'Large ruled books for notes, assignments and projects.', image: '/images/products/a4-exercise-book.jpeg' },
       { name: 'A5 Exercise Books', description: 'Compact ruled books, easy to carry and store.', image: '/images/products/a5-exercise-book.jpeg' },
-      { name: 'A4 Squared / Graph Books', description: 'Gridded pages for maths, science and technical work.' },
-      { name: 'Counter Books', description: 'Hard-covered record books for shops and offices.' },
-      { name: 'Manuscript Books', description: 'Wide-ruled books for early writers.' },
-      { name: 'Composition Books', description: 'Sewn, durable books for long-term note keeping.' }
+      { name: 'Graph Books', description: 'Gridded pages for maths, science and technical work.', image: '/images/products/graph-books.jpeg' },
+      { name: 'Counter Books', description: 'Hard-covered record books for shops and offices.', image: '/images/products/counter-books.jpeg' }
     ]
   },
   {
@@ -128,11 +126,11 @@ export const categories: Category[] = [
     description: 'Staplers, clips, scissors and other desk essentials.',
     image: '/images/categories/desk-accessories.jpeg',
     products: [
-      { name: 'Staplers & Staples', description: 'Desktop and heavy-duty staplers with refills.' },
-      { name: 'Paper Clips & Binder Clips', description: 'Assorted sizes for holding papers together.' },
-      { name: 'Scissors & Paper Cutters', description: 'Everyday cutting tools for the office.' },
-      { name: 'Tape & Tape Dispensers', description: 'Clear, masking and packaging tape.' },
-      { name: 'Hole Punches', description: 'Two-hole punches for filing.' }
+      { name: 'Staplers & Staples', description: 'Desktop and heavy-duty staplers with refills.', image: '/images/products/staplers-staples.jpeg' },
+      { name: 'Paper Clips & Binder Clips', description: 'Assorted sizes for holding papers together.', image: '/images/products/paper-clips-binder-clips.jpeg' },
+      { name: 'Scissors & Paper Cutters', description: 'Everyday cutting tools for the office.', image: '/images/products/scissors-paper-cutters.jpeg' },
+      { name: 'Tape & Tape Dispensers', description: 'Clear, masking and packaging tape.', image: '/images/products/tape-tape-dispensers.jpeg' },
+      { name: 'Hole Punches', description: 'Two-hole punches for filing.', image: '/images/products/hole-punches.jpeg' }
     ]
   },
   {
@@ -176,7 +174,7 @@ export const categories: Category[] = [
       { name: 'Tennis Balls', description: 'Pressurised tennis balls for practice and play.', image: '/images/products/tennis-balls.jpeg' },
       { name: 'Whistles', description: 'Loud, durable whistles for referees, coaches and PE teachers.', image: '/images/products/whistles.jpeg' },
       { name: 'Skipping Ropes', description: 'Adjustable ropes for fitness and play.', image: '/images/products/skipping-ropes.jpeg' },
-      { name: 'Cones & Sports Bibs', description: 'Training cones and team bibs.', image: '/images/products/ cones-and-sports-bibs.jpeg' }
+      
     ]
   }
 ];
